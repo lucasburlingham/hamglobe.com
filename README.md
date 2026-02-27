@@ -1,0 +1,1 @@
+# hamglobe.com
