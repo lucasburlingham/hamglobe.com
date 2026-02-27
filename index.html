@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HamGlobe</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background: #f9f9f9;
+			color: #333;
+		}
+
+		header {
+			position: relative;
+			background: #004580;
+			color: #fff;
+			padding: 60px 40px;
+			height: 300px;
+			overflow: hidden;
+		}
+
+		#headerGlobe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+		}
+
+		header h1,
+		header p {
+			position: relative;
+			z-index: 2;
+		}
+
+		header h1 {
+			margin: 0;
+			font-size: 2.5em;
+		}
+
+		main {
+			padding: 40px;
+			max-width: 800px;
+			margin: auto;
+		}
+
+		section {
+			margin-bottom: 30px;
+		}
+
+		ul {
+			list-style-type: disc;
+			margin-left: 20px;
+		}
+
+		a {
+			color: #004580;
+			text-decoration: none;
+		}
+
+		footer {
+			text-align: center;
+			padding: 20px;
+			font-size: .9em;
+			color: #666;
+		}
+
+		/* pricing cards */
+		.pricing-cards {
+			display: flex;
+			gap: 20px;
+			flex-wrap: wrap;
+			margin: 20px 0;
+		}
+
+		.pricing-cards .card {
+			flex: 1;
+			min-width: 250px;
+			background: #fff;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			padding: 20px;
+			position: relative;
+		}
+
+		.pricing-cards .card.popular {
+			border-color: #004580;
+		}
+
+		.pricing-cards .card.popular::before {
+			content: 'Most popular';
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			background: #004580;
+			color: #fff;
+			padding: 4px 8px;
+			font-size: 0.8em;
+			border-radius: 4px;
+		}
+
+		.pricing-cards h3 {
+			margin-top: 0;
+		}
+
+		.pricing-cards .price {
+			font-size: 2em;
+			margin: 10px 0;
+		}
+
+		.pricing-cards .price span {
+			font-size: 0.5em;
+		}
+
+		.pricing-cards .description {
+			font-style: italic;
+		}
+
+		.pricing-cards .highlights {
+			list-style: none;
+			padding: 0;
+			margin: 10px 0;
+		}
+
+		.pricing-cards .highlights li {
+			padding-left: 1.2em;
+			position: relative;
+		}
+
+		.pricing-cards .highlights li::before {
+			content: '✓';
+			position: absolute;
+			left: 0;
+			color: #004580;
+		}
+
+		.pricing-cards .highlights li.missing::before {
+			content: '✗';
+			position: absolute;
+			left: 0;
+			color: rgba(206, 67, 67, 0.964);
+		}
+
+		button.cta {
+			background: #004580;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			border-radius: 4px;
+			user-select: none;
+		}
+
+		button.cta:disabled {
+			background: #ccc;
+			color: #666;
+			cursor: not-allowed;
+		}
+	</style>
+
+<body>
+	<header>
+		<div id="headerGlobe"></div>
+		<h1>HamGlobe</h1>
+		<p>Put your logs on the map</p>
+	</header>
+	<main>
+		<section id="overview">
+			<h2>See Your QSOs Come Alive</h2>
+			<p>Imagine uploading a log file and instantly watching your contacts trace lines across the planet. HamGlobe
+				turns any point-to-point log (Amateur Radio or otherwise) into an interactive map that you can share,
+				embed, and export.</p>
+		</section>
+		<section id="features">
+			<h2>Powerful Features, Simple Workflow</h2>
+			<ul>
+				<li>Instantly visualize log entries as arcs and points on a globe</li>
+				<li>Embed a live, interactive map directly on your personal site or blog</li>
+				<li>Download high-resolution images for newsletters, slides, or print</li>
+				<li>ADIF support for seamless import from your logging software</li>
+				<li>QRZ lookup brings station details into the map automatically</li>
+				<li>Choose from multiple base layers and color schemes</li>
+				<li>Filter by date, band, mode, and other criteria for custom views</li>
+			</ul>
+		</section>
+		<section id="pricing">
+			<h2>Plans that work for everyone</h2>
+			<p>Whether you're casually mapping a few contacts or running a full-time station, we've got a plan that
+				fits. You can start free and upgrade whenever you're ready.</p>
+			<div class="pricing-cards">
+				<div class="card">
+					<h3>Free</h3>
+					<p class="price">$0 <span>/ year</span></p>
+					<p class="description">Perfect for getting started and small logs. Limited uploads, no exports.</p>
+					<ul class="highlights">
+						<li>Basic visualization and filtering</li>
+						<li>Limited log uploads</li>
+						<li class="missing">No Image export</li>
+					</ul>
+					<button class="cta" disabled>Get started</button>
+				</div>
+				<div class="card popular">
+					<h3>Pro</h3>
+					<p class="price">$29 <span>/ year</span></p>
+					<p class="description">Unlimited uploads and exports, plus QRZ station lookups.</p>
+					<ul class="highlights">
+						<li>Unlimited log uploads</li>
+						<li>High-res image export</li>
+						<li>QRZ lookups automatically</li>
+						<li class="missing">No custom domain or branding</li>
+					</ul>
+					<button class="cta" disabled>Get started or Upgrade</button>
+				</div>
+				<div class="card">
+					<h3>Self-hosted</h3>
+					<p class="price">$49 <span>/ year</span></p>
+					<p class="description">Host HamGlobe at your own domain with our backend support.</p>
+					<ul class="highlights">
+						<li>Use a custom domain name</li>
+						<li>Cloud server keeps map code up to date</li>
+						<li>Annual fee includes hosting support</li>
+						<li class="missing">No offline access</li>
+					</ul>
+					<button class="cta" disabled>Learn more</button>
+				</div>
+				<div class="card dxpedition">
+					<h3>DXpedition</h3>
+					<p class="price">$99 <span>one-time</span></p>
+					<p class="description">Custom page for a DXpedition group with branded map and details.</p>
+					<ul class="highlights">
+						<li>Individual map URL for your expedition integrated with your hosting provider</li>
+						<li>Custom logo, text and QSO filters</li>
+						<li>One-time fee; no recurring charge</li>
+						<li>Packaged for forever - no reliance on our servers and self-hostable</li>
+					</ul>
+					<button class="cta" disabled>Contact us</button>
+				</div>
+			</div>
+		</section>
+		<section id="installation">
+			<h2>Installation</h2>
+			<p>HamGlobe is available as a web application and can be accessed at <a
+					href="https://hamglobe.com">https://hamglobe.com</a>. No installation is required; simply create an
+				account and start uploading your logs.</p>
+		</section>
+		<section id="usage">
+			<h2>Usage</h2>
+			<p>Upload your log file in ADIF format, and HamGlobe will automatically parse the data and display it on the
+				map. You can customize the map style, filter logs by various criteria, and share through a unique URL or
+				API.</p>
+		</section>
+		<section id="license">
+			<h2>License &amp; Terms of Use</h2>
+			<p>HamGlobe is a source-visible but paid service. The free version has limited features; subscribe to the
+				premium version for full access.</p>
+			<p>By using HamGlobe, you agree to our <a href="TOS.md">Terms of Service</a> and <a
+					href="PRIVACY.md">Privacy Policy</a>. Please review these documents before using the service and
+				discontinue usage if you do not agree with the terms.</p>
+		</section>
+		<section id="contributing">
+			<h2>Contributing</h2>
+			<p>If you would like to contribute to the development of HamGlobe, please read <a
+					href="CONTRIBUTING.md">Contributing.md</a> for guidelines. Contributions are subject to review and
+				the same licensing terms as the rest of the codebase.</p>
+		</section>
+	</main>
+	<footer>
+		&copy; 2026 HamGlobe. All rights reserved.
+	</footer>
+
+	<!-- globe background script -->
+	<script src="//unpkg.com/globe.gl"></script>
+	<script>
+		// create a simple rotating earth in header
+		const globeBg = new Globe(document.getElementById('headerGlobe'))
+			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+			.backgroundColor('rgba(0,0,0,0)')
+	</script>
+</body>
+
+</html>
