@@ -3,7 +3,15 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="HamGlobe is a web application that turns your Amateur Radio logs into interactive maps. 
+		Upload your ADIF log files and watch your QSOs come alive as arcs and points on a globe. 
+		Share your maps with friends or embed them on your site. 
+		Perfect for ham radio operators who want to visualize their contacts around the world.">
+	<meta name="keywords"
+		content="HamGlobe, ham radio, amateur radio, radio logs, ADIF, interactive maps, globe visualization, QRZ lookup, log mapping">
 	<title>HamGlobe</title>
 	<style>
 		body {
@@ -68,6 +76,14 @@
 			padding: 20px;
 			font-size: .9em;
 			color: #666;
+		}
+
+		.underline {
+			text-decoration: underline;
+		}
+
+		.italic {
+			font-style: italic;
 		}
 
 		/* pricing cards */
@@ -146,6 +162,13 @@
 			color: rgba(206, 67, 67, 0.964);
 		}
 
+		.pricing-cards .highlights li.plus::before {
+			content: '+';
+			position: absolute;
+			left: 0;
+			color: green;
+		}
+
 		button.cta {
 			background: #004580;
 			color: #fff;
@@ -162,6 +185,7 @@
 			cursor: not-allowed;
 		}
 	</style>
+</head>
 
 <body>
 	<header>
@@ -209,21 +233,24 @@
 					<p class="price">$29 <span>/ year</span></p>
 					<p class="description">Unlimited uploads and exports, plus QRZ station lookups.</p>
 					<ul class="highlights">
-						<li>Unlimited log uploads</li>
-						<li>High-res image export</li>
-						<li>QRZ lookups automatically</li>
+						<li>Everything in <span class="underline italic">Free</span></li>
+						<li>Complex filtering by date, band, mode, and other criteria</li>
+						<li class="plus">Unlimited log uploads</li>
+						<li class="plus">High-res image export</li>
+						<li class="plus">QRZ lookups automatically</li>
 						<li class="missing">No custom domain or branding</li>
 					</ul>
 					<button class="cta" disabled>Get started or Upgrade</button>
 				</div>
 				<div class="card">
 					<h3>Self-hosted</h3>
-					<p class="price">$49 <span>/ year</span></p>
+					<p class="price">$35 <span>/ year</span></p>
 					<p class="description">Host HamGlobe at your own domain with our backend support.</p>
 					<ul class="highlights">
-						<li>Use a custom domain name</li>
-						<li>Cloud server keeps map code up to date</li>
-						<li>Annual fee includes hosting support</li>
+						<li>Everything in <span class="underline italic">Pro</span></li>
+						<li class="plus">Use a custom domain name</li>
+						<li class="plus">Cloud server keeps map code up to date</li>
+						<li class="plus">Annual fee includes hosting support</li>
 						<li class="missing">No offline access</li>
 					</ul>
 					<button class="cta" disabled>Learn more</button>
@@ -236,7 +263,7 @@
 						<li>Individual map URL for your expedition integrated with your hosting provider</li>
 						<li>Custom logo, text and QSO filters</li>
 						<li>One-time fee; no recurring charge</li>
-						<li>Packaged for forever - no reliance on our servers and self-hostable</li>
+						<li>Forever Package - no reliance on our servers and is self-hostable</li>
 					</ul>
 					<button class="cta" disabled>Contact us</button>
 				</div>
@@ -257,7 +284,8 @@
 		<section id="license">
 			<h2>License &amp; Terms of Use</h2>
 			<p>HamGlobe is a source-visible but paid service. The free version has limited features; subscribe to the
-				premium version for full access.</p>
+				premium version for full access. The source code is available for review and contribution on our <a
+					href="https://github.com/lburlingham/hamglobe">GitHub repository</a>.</p>
 			<p>By using HamGlobe, you agree to our <a href="TOS.md">Terms of Service</a> and <a
 					href="PRIVACY.md">Privacy Policy</a>. Please review these documents before using the service and
 				discontinue usage if you do not agree with the terms.</p>
