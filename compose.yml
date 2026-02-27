@@ -1,0 +1,25 @@
+services:
+  hamglobe:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app
+    networks:
+      - hamglobe-network
+
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared:latest
+    # use a config file rather than token command line for ingress rules
+    command: tunnel --no-autoupdate run --config /etc/cloudflared/config.yml
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN} # optional if you still authenticate that way
+    volumes:
+      - ./cloudflared/config.yml:/etc/cloudflared/config.yml:ro
+      - ./cloudflared/credentials.json:/etc/cloudflared/credentials.json:ro
+    networks:
+      - hamglobe-network
+
+networks:
+  hamglobe-network:
+    driver: bridge

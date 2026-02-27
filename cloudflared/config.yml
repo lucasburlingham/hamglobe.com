@@ -1,0 +1,10 @@
+# example Cloudflare Tunnel configuration
+# run `cloudflared tunnel login` locally to generate credentials.json
+# and `cloudflared tunnel create <name>` to create a tunnel id.
+
+# the tunnel id goes in credentials.json (mounted below)
+
+ingress:
+  - hostname: hamglobe.com
+    service: http://frontend:80
+  - service: http_status:404
