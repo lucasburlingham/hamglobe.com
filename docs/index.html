@@ -13,178 +13,7 @@
 	<meta name="keywords"
 		content="HamGlobe, ham radio, amateur radio, radio logs, ADIF, interactive maps, globe visualization, QRZ lookup, log mapping">
 	<title>HamGlobe</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background: #f9f9f9;
-			color: #333;
-		}
-
-		header {
-			position: relative;
-			background: #004580;
-			color: #fff;
-			padding: 60px 40px;
-			height: 300px;
-			overflow: hidden;
-		}
-
-		#headerGlobe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 1;
-		}
-
-		header h1,
-		header p {
-			position: relative;
-			z-index: 2;
-		}
-
-		header h1 {
-			margin: 0;
-			font-size: 2.5em;
-		}
-
-		main {
-			padding: 40px;
-			max-width: 800px;
-			margin: auto;
-		}
-
-		section {
-			margin-bottom: 30px;
-		}
-
-		ul {
-			list-style-type: disc;
-			margin-left: 20px;
-		}
-
-		a {
-			color: #004580;
-			text-decoration: none;
-		}
-
-		footer {
-			text-align: center;
-			padding: 20px;
-			font-size: .9em;
-			color: #666;
-		}
-
-		.underline {
-			text-decoration: underline;
-		}
-
-		.italic {
-			font-style: italic;
-		}
-
-		/* pricing cards */
-		.pricing-cards {
-			display: flex;
-			gap: 20px;
-			flex-wrap: wrap;
-			margin: 20px 0;
-		}
-
-		.pricing-cards .card {
-			flex: 1;
-			min-width: 250px;
-			background: #fff;
-			border: 1px solid #ccc;
-			border-radius: 8px;
-			padding: 20px;
-			position: relative;
-		}
-
-		.pricing-cards .card.popular {
-			border-color: #004580;
-		}
-
-		.pricing-cards .card.popular::before {
-			content: 'Most popular';
-			position: absolute;
-			top: -10px;
-			right: -10px;
-			background: #004580;
-			color: #fff;
-			padding: 4px 8px;
-			font-size: 0.8em;
-			border-radius: 4px;
-		}
-
-		.pricing-cards h3 {
-			margin-top: 0;
-		}
-
-		.pricing-cards .price {
-			font-size: 2em;
-			margin: 10px 0;
-		}
-
-		.pricing-cards .price span {
-			font-size: 0.5em;
-		}
-
-		.pricing-cards .description {
-			font-style: italic;
-		}
-
-		.pricing-cards .highlights {
-			list-style: none;
-			padding: 0;
-			margin: 10px 0;
-		}
-
-		.pricing-cards .highlights li {
-			padding-left: 1.2em;
-			position: relative;
-		}
-
-		.pricing-cards .highlights li::before {
-			content: '✓';
-			position: absolute;
-			left: 0;
-			color: #004580;
-		}
-
-		.pricing-cards .highlights li.missing::before {
-			content: '✗';
-			position: absolute;
-			left: 0;
-			color: rgba(206, 67, 67, 0.964);
-		}
-
-		.pricing-cards .highlights li.plus::before {
-			content: '+';
-			position: absolute;
-			left: 0;
-			color: green;
-		}
-
-		button.cta {
-			background: #004580;
-			color: #fff;
-			border: none;
-			padding: 10px 20px;
-			cursor: pointer;
-			border-radius: 4px;
-			user-select: none;
-		}
-
-		button.cta:disabled {
-			background: #ccc;
-			color: #666;
-			cursor: not-allowed;
-		}
-	</style>
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -194,6 +23,10 @@
 		<p>Put your logs on the map</p>
 	</header>
 	<main>
+		<noscript>
+			<h1>JavaScript is required to view this content. Please do not purchase a plan without enabling JavaScript.
+			</h1>
+		</noscript>
 		<section id="overview">
 			<h2>See Your QSOs Come Alive</h2>
 			<p>Imagine uploading a log file and instantly watching your contacts trace lines across the planet. HamGlobe
@@ -301,13 +134,45 @@
 		&copy; 2026 HamGlobe. All rights reserved.
 	</footer>
 
+
 	<!-- globe background script -->
-	<script src="//unpkg.com/globe.gl"></script>
-	<script>
-		// create a simple rotating earth in header
-		const globeBg = new Globe(document.getElementById('headerGlobe'))
-			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+	<script src="js/globe.js" type="text/javascript"></script>
+	<script src="js/arcs.js" type="text/javascript"></script>
+	<script defer type="text/javascript">
+		// If it's night in their locale, show them the night globe background; otherwise, show the day version.
+		const hours = new Date().getHours();
+		const globeImage = (hours >= 7 && hours <= 19) ? 'globes/earth-blue-marble.jpg' : 'globes/earth-night.jpg';
+
+
+		globeBG = new Globe(document.getElementById('headerGlobe'))
+			.globeImageUrl(globeImage)
+			.arcsData(arcsData)
 			.backgroundColor('rgba(0,0,0,0)')
+			.arcColor('color')
+			.showAtmosphere(true)
+			.arcDashLength(() => Math.random())
+			.arcDashGap(() => Math.random())
+			.arcDashAnimateTime(() => Math.random() * 4000 + 500)
+			.pointOfView({ lat: "35.5", lng: "-86.5", altitude: 3 })
+			.globeOffset([0, -200]);
+
+		globeBG.controls().autoRotate = true;
+		globeBG.controls().autoRotateSpeed = 1;
+		globeBG.controls().enableZoom = false;
+		globeBG.controls().enablePan = false;
+	</script>
+	<script>
+		// Clear all webgl contexts on the page to prevent memory leaks from the globe background when navigating between pages.
+		window.addEventListener('beforeunload', () => {
+			const canvasElements = document.querySelectorAll('canvas');
+			canvasElements.forEach(canvas => {
+				const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+				if (gl) {
+					gl.getExtension('WEBGL_lose_context')?.loseContext();
+					gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+				}
+			});
+		});
 	</script>
 </body>
 

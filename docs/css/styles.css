@@ -1,0 +1,184 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #f9f9f9;
+	color: #333;
+	overflow-x: hidden;
+	/* prevent horizontal scroll from globe */
+	z-index: 1;
+}
+
+header {
+	position: relative;
+	background: #004580;
+	color: #fff;
+	padding: 60px 40px;
+	height: 300px;
+	overflow: hidden;
+	overflow-x: hidden;
+	/* prevent horizontal scroll from globe */
+	z-index: -2;
+}
+
+#headerGlobe {
+	position: fixed;
+	pointer-events: none;
+	/* allow clicks to pass through */
+	width: 100%;
+	height: 100%;
+	z-index: -10000;
+	justify-self: center;
+}
+
+header h1,
+header p {
+	position: relative;
+	z-index: 0;
+}
+
+header h1 {
+	margin: 0;
+	font-size: 2.5em;
+}
+
+main {
+	padding: 40px;
+	max-width: 800px;
+	margin: auto;
+	z-index: 1;
+	/* above globe */
+
+}
+
+section {
+	margin-bottom: 30px;
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+	list-style-type: disc;
+	margin-left: 20px;
+}
+
+a {
+	color: #004580;
+	text-decoration: none;
+}
+
+footer {
+	text-align: center;
+	padding: 20px;
+	font-size: .9em;
+	color: #666;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/* pricing cards */
+.pricing-cards {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin: 20px 0;
+}
+
+.pricing-cards .card {
+	flex: 1;
+	min-width: 250px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 20px;
+	position: relative;
+}
+
+.pricing-cards .card.popular {
+	border-color: #004580;
+}
+
+.pricing-cards .card.popular::before {
+	content: 'Most popular';
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	background: #004580;
+	color: #fff;
+	padding: 4px 8px;
+	font-size: 0.8em;
+	border-radius: 4px;
+}
+
+.pricing-cards h3 {
+	margin-top: 0;
+}
+
+.pricing-cards .price {
+	font-size: 2em;
+	margin: 10px 0;
+}
+
+.pricing-cards .price span {
+	font-size: 0.5em;
+}
+
+.pricing-cards .description {
+	font-style: italic;
+}
+
+.pricing-cards .highlights {
+	list-style: none;
+	padding: 0;
+	margin: 10px 0;
+}
+
+.pricing-cards .highlights li {
+	padding-left: 1.2em;
+	position: relative;
+}
+
+.pricing-cards .highlights li::before {
+	content: '✓';
+	position: absolute;
+	left: 0;
+	color: #004580;
+}
+
+.pricing-cards .highlights li.missing::before {
+	content: '✗';
+	position: absolute;
+	left: 0;
+	color: rgba(206, 67, 67, 0.964);
+}
+
+.pricing-cards .highlights li.plus::before {
+	content: '+';
+	position: absolute;
+	left: 0;
+	color: green;
+}
+
+button.cta {
+	background: #004580;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 4px;
+	user-select: none;
+}
+
+button.cta:disabled {
+	background: #ccc;
+	color: #666;
+	cursor: not-allowed;
+}
